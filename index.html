@@ -1,10 +1,391 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Portfolyom</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huseyin Bağlayici | Gameplay Programmer</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            font-weight: 400;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        p.summary {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Experience Section */
+        .experience-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .banner {
+            display: block;
+            width: 100%;
+            height: 150px;
+            background-color: #21262d;
+            background-size: cover;
+            background-position: center;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .banner-link-text {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Split Banner Styles */
+        .banner-split {
+            display: flex;
+            height: 150px;
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .banner-half {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            text-decoration: none;
+            transition: filter 0.2s ease-in-out;
+        }
+
+        .banner-half:hover {
+            filter: brightness(1.2);
+        }
+
+        .banner-half:first-child {
+            border-right: 2px solid var(--bg-color);
+        }
+
+        .game-label {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Card Content Styles */
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .card-content span.company {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .card-content ul {
+            list-style-position: inside;
+            color: #8b949e;
+            font-size: 0.95rem;
+        }
+
+        .card-content ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Projects Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .project-card h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .project-card .tech-stack {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: #8b949e;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-github {
+            display: inline-block;
+            background-color: var(--border-color);
+            color: #c9d1d9;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.2s;
+            border: 1px solid rgba(240, 246, 252, 0.1);
+        }
+
+        .btn-github:hover {
+            background-color: #8b949e;
+            color: #0d1117;
+        }
+
+        /* YouTube Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
+            color: #8b949e;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>iamagamedeev</h1>
-    <p>testing.</p>
+
+<header>
+    <h1>Huseyin Bağlayici</h1>
+    <h2>Gameplay Programmer</h2>
+    <div class="links">
+        <a href="mailto:huseyinbaggla@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/huseyinbaglayici/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/huseyinbaglayici" target="_blank">GitHub</a>
+    </div>
+</header>
+
+<section id="about">
+    <h2 class="section-title">About</h2>
+    <p class="summary">
+        Gameplay Programmer with a focus on performance optimization and system architecture. Hands-on experience in low-level optimization, memory management, and porting console titles. Dedicated to building scalable gameplay systems and memory-efficient code in C++ and C#.
+    </p>
+</section>
+
+<section id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+
+    <div class="experience-card">
+        <a href="https://store.steampowered.com/app/1646850/SpaceBourne_2/" target="_blank" class="banner" style="background-image: url('images/spacebourne2.jpg')">
+            <span class="banner-link-text">View Game ↗</span>
+        </a>
+        <div class="card-content">
+            <h3>Intern Game Developer</h3>
+            <span class="company">DBK Games</span>
+            <ul>
+                <li>Assisted the production of SpaceBourne 2 (C++/Unreal Engine), focusing on technical reporting and bug identification.</li>
+                <li>Gained foundational exposure to C++ workflows and Unreal Profiling tools to identify gameplay and performance bottlenecks.</li>
+                <li>Documented system behaviors and verified fixes to maintain quality standards during the development cycle.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="experience-card">
+        <a href="https://www.xbox.com/tr-TR/games/store/night-swarm/9N7X0S5T9KTJ" target="_blank" class="banner" style="background-image: url('images/nightswarm.jpg');">
+            <span class="banner-link-text">View Game ↗</span>
+        </a>
+        <div class="card-content">
+            <h3>Unity Developer</h3>
+            <span class="company">Naisu Games</span>
+            <ul>
+                <li>Executed technical porting of Night Swarm to Nintendo Switch and Xbox One S, optimizing for low-end hardware constraints.</li>
+                <li>Performed memory management and performance tuning using Unity Profiler to ensure technical compliance and stable FPS.</li>
+                <li>Managed console deployment pipelines and update cycles, ensuring seamless integration of patches and performance fixes.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="experience-card">
+        <div class="banner-split">
+            <a href="https://play.google.com/store/apps/details?id=com.masomo.headball2" target="_blank" class="banner-half" style="background-image: url('images/headball2.jpg');">
+                <span class="game-label">Head Ball 2 ↗</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.masomo.basketballarena" target="_blank" class="banner-half" style="background-image: url('images/basketballarena.jpg');">
+                <span class="game-label">Basketball Arena ↗</span>
+            </a>
+        </div>
+        <div class="card-content">
+            <h3>Games QA Tester Intern</h3>
+            <span class="company">Miniclip / Masomo</span>
+            <ul>
+                <li>Managed end-to-end testing for high-traffic titles (millions of DAU).</li>
+                <li>Leveraged Jira, Firebase, Kibana, and BrowserStack to monitor game health.</li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<section id="projects">
+    <h2 class="section-title">Personal & Study Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>Arkanoid CPP</h3>
+            <span class="tech-stack">C++ | Cocos2d-x</span>
+            <p>Developed as a technical study case during my internship at Masomo (Miniclip), focusing on C++ fundamentals and 2D engine architecture.</p>
+            <a href="https://github.com/huseyinbaglayici/Arkanoid_Cpp" target="_blank" class="btn-github">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Bus Jam</h3>
+            <span class="tech-stack">C# | Unity</span>
+            <p>Technical assessment case developed for Rollic Games. Implements scalable grid mechanics, custom State Machines, and pathfinding logic.</p>
+            <a href="https://github.com/huseyinbaglayici/Bus_Jam" target="_blank" class="btn-github">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Color Block Jam</h3>
+            <span class="tech-stack">C# | Unity</span>
+            <p>Puzzle game prototype focusing on array manipulations, procedural grid generation, and optimized object pooling.</p>
+            <a href="https://github.com/huseyinbaglayici/Color_Block_Jam" target="_blank" class="btn-github">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Atm Rush</h3>
+            <span class="tech-stack">C# | Unity</span>
+            <p>Hyper-casual runner prototype demonstrating spline-based movement, dynamic stacking mechanics, and mathematical offset calculations.</p>
+            <a href="https://github.com/huseyinbaglayici/Atm_Rush" target="_blank" class="btn-github">View on GitHub</a>
+        </div>
+
+        <div class="project-card">
+            <h3>Picker 3D</h3>
+            <span class="tech-stack">C# | Unity</span>
+            <p>Physics-based arcade game implementing custom collision matrices, Rigidbody manipulation, and state-driven level progression.</p>
+            <a href="https://github.com/huseyinbaglayici/Picker3D" target="_blank" class="btn-github">View on GitHub</a>
+        </div>
+    </div>
+</section>
+
+<section id="youtube-showcase">
+    <h2 class="section-title">Gameplay Showcase</h2>
+    <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/nL6i8mKN2tM?si=C5Cdux8ZFdn_2DfE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Huseyin Bağlayici. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
